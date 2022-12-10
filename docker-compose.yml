@@ -13,6 +13,7 @@ services:
     networks:
       - onlyoffice
     volumes:
+      - ./autoconfig.php:/var/www/html/nextcloud/config/autoconfig.php
       - app_data:/var/www/html
   onlyoffice-document-server:
     container_name: onlyoffice-document-server
@@ -20,6 +21,8 @@ services:
     stdin_open: true
     tty: true
     restart: always
+    environment:
+      - JWT_ENABLED=false
     networks:
       - onlyoffice
     expose:
