@@ -1,4 +1,8 @@
 #!/bin/bash
+source .env
+
+docker exec -u www-data app-server php occ --no-warnings config:system:delete overwrite.cli.url
+docker exec -u www-data app-server php occ --no-warnings config:system:set trusted_domains 0 --value="${TRUSTED_DOMAINS}"
 
 set -x
 

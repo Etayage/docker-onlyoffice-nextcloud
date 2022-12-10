@@ -12,8 +12,14 @@ services:
       - '9000'
     networks:
       - onlyoffice
+    environment:
+      - NEXTCLOUD_ADMIN_USER=${NEXTCLOUD_ADMIN_USER}
+      - NEXTCLOUD_ADMIN_PASSWORD=${NEXTCLOUD_ADMIN_PASSWORD}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_HOST=${MYSQL_HOST}
     volumes:
-      - ./autoconfig.php:/var/www/html/nextcloud/config/autoconfig.php
       - app_data:/var/www/html
   onlyoffice-document-server:
     container_name: onlyoffice-document-server
@@ -53,9 +59,9 @@ services:
       - mysql_data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=MyR00tSQ1!
-      - MYSQL_PASSWORD=N3xtCl0ud!
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
     networks:
       - onlyoffice
 networks:
