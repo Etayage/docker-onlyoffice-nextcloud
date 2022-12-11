@@ -25,6 +25,3 @@ sudo apt-get install --yes docker-ce docker-ce-cli containerd.io docker-compose-
 sudo groupadd docker
 sudo usermod -aG docker $USER
 newgrp - docker 
-
-#prendre en compte les nouveaux params
-exec sudo -i -u $(whoami)
