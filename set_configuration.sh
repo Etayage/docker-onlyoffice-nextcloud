@@ -1,16 +1,16 @@
 #!/bin/bash
 
-echo "launching NC"
+printf "launching NC "
 
 LAUNCHED=$(docker logs app-server | grep "ready" | wc -l)
 while [ $LAUNCHED -lt 1 ]
 do
   printf '.'
-  sleep 5
+  sleep 1
   LAUNCHED=$(docker logs app-server | grep "ready" | wc -l)
 done
 printf '\n'
-echo "launched"
+echo " NC launched"
 
 echo "configuring NC"
 
@@ -34,3 +34,5 @@ docker exec -u www-data app-server php occ --no-warnings app:install onlyoffice
 docker exec -u www-data app-server php occ --no-warnings config:system:set onlyoffice DocumentServerUrl --value="/ds-vpath/"
 docker exec -u www-data app-server php occ --no-warnings config:system:set onlyoffice DocumentServerInternalUrl --value="http://onlyoffice-document-server/"
 docker exec -u www-data app-server php occ --no-warnings config:system:set onlyoffice StorageUrl --value="http://nginx-server/"
+
+echo "NC configured"
