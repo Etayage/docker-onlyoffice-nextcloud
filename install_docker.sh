@@ -25,4 +25,3 @@ sudo apt-get install --yes docker-ce docker-ce-cli containerd.io docker-compose-
 sudo groupadd docker
 sudo usermod -aG docker $USER
 newgrp - docker 
-su -s ${USER}
