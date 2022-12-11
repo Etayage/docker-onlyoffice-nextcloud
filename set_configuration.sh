@@ -1,4 +1,15 @@
 #!/bin/bash
+
+LAUNCHED=$(docker logs app-server | grep "ready" | wc -l)
+echo "launched : $LAUNCHED"
+while [ $LAUNCHED -lt 1 ]
+do
+  echo "attente"
+  sleep 5
+  LAUNCHED=$(docker logs app-server | grep "ready" | wc -l)
+  echo "launched : $LAUNCHED"
+done
+
 source .env
 
 docker exec -u www-data app-server php occ --no-warnings config:system:delete overwrite.cli.url
