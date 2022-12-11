@@ -26,9 +26,3 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 newgrp docker 
 
-sudo apt-get install --yes unzip 
-
-wget https://github.com/Etayage/docker-onlyoffice-nextcloud/archive/refs/heads/master.zip
-unzip master.zip
-cd docker-onlyoffice-nextcloud-master
-sudo docker compose up
