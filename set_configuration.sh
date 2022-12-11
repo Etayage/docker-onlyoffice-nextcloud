@@ -1,14 +1,18 @@
 #!/bin/bash
 
+echo "launching NC"
+
 LAUNCHED=$(docker logs app-server | grep "ready" | wc -l)
-echo "launched : $LAUNCHED"
 while [ $LAUNCHED -lt 1 ]
 do
-  echo "attente"
+  printf '.' > /dev/tty
   sleep 5
   LAUNCHED=$(docker logs app-server | grep "ready" | wc -l)
-  echo "launched : $LAUNCHED"
 done
+printf '\n' > /dev/tty
+echo "launched"
+
+echo "configuring NC"
 
 source .env
 
