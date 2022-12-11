@@ -5,11 +5,11 @@ echo "launching NC"
 LAUNCHED=$(docker logs app-server | grep "ready" | wc -l)
 while [ $LAUNCHED -lt 1 ]
 do
-  printf '.' > /dev/tty
+  printf '.'
   sleep 5
   LAUNCHED=$(docker logs app-server | grep "ready" | wc -l)
 done
-printf '\n' > /dev/tty
+printf '\n'
 echo "launched"
 
 echo "configuring NC"
